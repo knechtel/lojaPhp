@@ -1,3 +1,7 @@
+<?php
+error_reporting(E_ALL ^ E_NOTICE);
+require_once("mostra-alerta.php"); ?>
+
 <html>
 <head>
     <title>Minha loja</title>
@@ -24,3 +28,8 @@
     <div class="container">
 
     <div class="principal">
+
+        <?php
+        mostraAlerta("success");
+        mostraAlerta("danger");
+        ?>

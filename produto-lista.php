@@ -15,7 +15,7 @@
         <td><a class="btn btn-primary" href="produto-altera-formulario.php?id=<?=$produto['id']?>">alterar</a></td>
         <td>
             <form action="remove-produto.php" method="post">
-                <input type="hidden" name="id" value="<?=$produto['id']?>" />
+                <input type="hidden" name="id" value="<?=$produto['ID']?>" />
                 <button class="btn btn-danger">remover</button>
             </form>
         </td>

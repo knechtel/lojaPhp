@@ -4,6 +4,8 @@ require_once("cabecalho.php");
 ?>
 <body>
 <script type="text/javascript" language="javascript">
+function show(){  console.log("ola");  }
+
 function MascaraMoeda(objTextBox, SeparadorMilesimo, SeparadorDecimal, e){
     var sep = 0;
     var key = '';
@@ -90,9 +92,25 @@ var email = document.getElementById("email").value;
     </tr>
     <tr>
         <td>Email:</td>
-        <td><input name="email" class="form-control" type="text"/></td>
+        <td><input id="emailId" name="email" class="form-control" type="text"/></td>
     </tr>
+    <tr>
+        <td><div>
+<a href="#ex1" type="button" onclick="show()" class="btn btn-primary" rel="modal:open">Enviar</a>
+</div></td>
+  </tr>
+
 </table>
+
+</br>
+
+<div id="ex1" class="modal">
+  <p>Thanks for clicking. That felt good.</p>
+  <a href="#" rel="modal:close">Close</a>
+</div>
+
+<!-- Link to open the modal -->
+
 
 </br>
 
@@ -121,12 +139,20 @@ var email = document.getElementById("email").value;
         <td>Autorizado?</td>
         <td><input type="checkbox"></td>
     </tr>
+    <tr>
+        <td>Entregue?</td>
+        <td><input type="checkbox"></td>
+    </tr>
+    <tr>
+        <td>Garantia?</td>
+        <td><input type="checkbox"></td>
+    </tr>
    <tr>
     <td>Defeito/OBS</td>
     <td><textarea id="story" name="story"
           rows="5" cols="33">
     </textarea></td>
-    <tr>
+  <tr>
     <td><input onclick="aparelhoAdd()" class="btn btn-primary" value="Enviar"/></td>
   </tr>
 </table>

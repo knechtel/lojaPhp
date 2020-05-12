@@ -1,8 +1,9 @@
 <?php
+
 require_once("cabecalho.php");
 ?>
 <body>
-<script>
+<script type="text/javascript" language="javascript">
 function MascaraMoeda(objTextBox, SeparadorMilesimo, SeparadorDecimal, e){
     var sep = 0;
     var key = '';
@@ -58,30 +59,38 @@ var cell3 = row.insertCell(2);
 cell1.innerHTML =  document.getElementById("aparelhoName").value;;
 cell2.innerHTML = document.getElementById("aparelhoModelo").value;
 cell3.innerHTML = document.getElementById("aparelhoSerial").value;
+/*
+var nome = document.getElementById("nome").value;
+var cpf = document.getElementById("cpf").value;
+var endereco = document.getElementById("endereco").value;
+var telefone = document.getElementById("telefone").value;
+var email = document.getElementById("email").value;
+*/
 }
 
 </script>
  <h1>Cadastro de ordem de serviço</h1>
+ <form action="view.php" method="POST">
 <table class="table">
     <tr>
         <td>Nome:</td>
-        <td><input class="form-control"type="text"/></td>
+        <td><input name="nome" class="form-control"type="text"/></td>
     </tr>
     <tr>
         <td>CPF:</td>
-        <td><input class="form-control"type="text"/></td>
+        <td><input name="cpf" class="form-control"type="text"/></td>
     </tr>
     <tr>
         <td>Endereço:</td>
-        <td><input class="form-control"type="text"/></td>
+        <td><input name="endereco" class="form-control"type="text"/></td>
     </tr>
     <tr>
         <td>Telefone:</td>
-        <td><input class="form-control" type="text"/></td>
+        <td><input name="telefone" class="form-control" type="text"/></td>
     </tr>
     <tr>
         <td>Email:</td>
-        <td><input class="form-control" type="text"/></td>
+        <td><input name="email" class="form-control" type="text"/></td>
     </tr>
 </table>
 
@@ -118,9 +127,7 @@ cell3.innerHTML = document.getElementById("aparelhoSerial").value;
           rows="5" cols="33">
     </textarea></td>
    </tr>
-   <tr>
-      <td><input onclick="aparelhoAdd()" class="btn btn-primary"  type="button"value="Enviar"/></td>
-    </tr>
+     </tr>
 </table>
 
 </br></br></br>
@@ -140,9 +147,10 @@ cell3.innerHTML = document.getElementById("aparelhoSerial").value;
       <td><input class="form-control" onKeyPress="return(MascaraMoeda(this,'.',',',event))" type="text"/></td>
   </tr>
   <tr>
-    <td><input class="btn btn-primary" type="button"value="Enviar"/></td>
+    <td><input class="btn btn-primary" type="submit"value="Enviar"/></td>
     </tr>
 </table>
+</form>
 </body>
 <?php require_once("rodape.php"); ?>
 

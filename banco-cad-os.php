@@ -6,6 +6,16 @@ function clienteByID($conexao,$id){
     return mysqli_fetch_assoc($resultado);
 }
 
+function aparelhoByCliente($conexao,$id){
+    $query = "select aparelho.id,aparelho.nome,aparelho.modelo,aparelho.serial from cliente join aparelho on aparelho.idCliente = cliente.id where cliente.id = {$id} order by aparelho.nome ASC";
+    $resultado = mysqli_query($conexao, $query);
+    return mysqli_fetch_assoc($resultado);
+}
+
+function listAparelhoByIdCliente($conexao,$idCliente) {
+    return mysqli_query($conexao, "select id,nome,modelo,serial,defeito_obs from aparelho where aparelho.idCliente = {$idCliente}");   
+}
+
 function listaClientes($conexao) {
     return mysqli_query($conexao, "select * from cliente");   
 }

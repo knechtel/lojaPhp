@@ -268,7 +268,7 @@ function insertCliente (){
       <td><input class="form-control" onKeyPress="return(MascaraMoeda(this,'.',',',event))" type="text"/></td>
   </tr>
   <tr>
-    <td><input class="btn btn-primary"  type="submit()" value="Enviar"/></td>
+    <td><input class="btn btn-primary"  type="submit" value="Enviar"/></td>
   </tr>
 </table>
 </form>

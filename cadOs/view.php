@@ -9,9 +9,7 @@ $telefone = $_POST['telefone'];
 $email = $_POST['email'];
 
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-insert($conexao,$nome,$cpf,$endereco,$telefone,$email);
-}
+
 ?>
 <p>Feito!<?= $nome ?></p>
 <p>Feito!<?= $cpf ?></p>

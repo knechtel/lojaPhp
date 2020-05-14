@@ -134,7 +134,7 @@ function insertCliente (){
     var endereco = document.getElementById("enderecoCliente").value;
     var telefone = document.getElementById("telefoneCliente").value;
     var email = document.getElementById("emailCliente").value;
-
+    $("idButtonCliente").prop( "disabled", true );
     
     var arr = {	
 	nome:nome,
@@ -156,6 +156,7 @@ function insertCliente (){
             
         }
     }
+ 
 );
 
 }
@@ -186,7 +187,7 @@ function insertCliente (){
     </tr>
     <tr>
         <td><div>
-<a href="#ex1" type="button" onclick="insertCliente()" class="btn btn-primary" rel="modal:open">Enviar</a>
+<a href="#ex1" id="idButtonCliente" type="button" onclick="insertCliente()" class="btn btn-primary" rel="modal:open">Enviar</a>
 </div></td>
   </tr>
 
@@ -267,7 +268,7 @@ function insertCliente (){
       <td><input class="form-control" onKeyPress="return(MascaraMoeda(this,'.',',',event))" type="text"/></td>
   </tr>
   <tr>
-    <td><input class="btn btn-primary"  onclick="insertAparelho()" value="Enviar"/></td>
+    <td><input class="btn btn-primary"  type="submit()" value="Enviar"/></td>
   </tr>
 </table>
 </form>

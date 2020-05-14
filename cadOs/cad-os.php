@@ -4,8 +4,10 @@ require_once("cabecalho.php");
 ?>
 <body>
 <script type="text/javascript" language="javascript">
-function show(){  console.log("ola");  }
+var idCliente = 0;
+var aparelhos=[];
 
+function show(){  }
 function MascaraMoeda(objTextBox, SeparadorMilesimo, SeparadorDecimal, e){
     var sep = 0;
     var key = '';
@@ -46,9 +48,11 @@ function MascaraMoeda(objTextBox, SeparadorMilesimo, SeparadorDecimal, e){
     }
     return false;
 }
+ id_cliente=1;
 function aparelhoAdd() {
   console.log("ola teste")
-  var table = document.getElementById("aparelhoTable");
+
+var table = document.getElementById("aparelhoTable");
 
 // Create an empty <tr> element and add it to the 1st position of the table:
 var row = table.insertRow();
@@ -61,13 +65,69 @@ var cell3 = row.insertCell(2);
 cell1.innerHTML =  document.getElementById("aparelhoName").value;;
 cell2.innerHTML = document.getElementById("aparelhoModelo").value;
 cell3.innerHTML = document.getElementById("aparelhoSerial").value;
-/*
-var nome = document.getElementById("nome").value;
-var cpf = document.getElementById("cpf").value;
-var endereco = document.getElementById("endereco").value;
-var telefone = document.getElementById("telefone").value;
-var email = document.getElementById("email").value;
-*/
+
+var nome = document.getElementById("aparelhoName").value;
+var aparelhoModelo = document.getElementById("aparelhoModelo").value;
+var aparelhoSerial = document.getElementById("aparelhoSerial").value;
+var aparelhoPronto = document.getElementById("aparelhoPronto").value;
+console.log("call()");
+console.log(nome);
+console.log(aparelhoModelo);
+console.log(aparelhoSerial);
+console.log(aparelhoPronto);
+var test;   
+var arr = {	
+	nome:nome,
+	modelo:aparelhoModelo,
+	serial:aparelhoSerial,
+    pronto :top.id_cliente,
+    idCliente:top.id_cliente};
+$.ajax(
+   {
+        url: "../aparelho/insert-aparelho.php",
+        type: "POST",
+        data: JSON.stringify(arr),
+        dataType: 'json',
+        async: false,
+        success: function(data) {
+            
+            console.log(data);
+            console.log("-> foi ");
+        }
+    }
+);
+}
+
+function insertCliente (){
+    var nome = document.getElementById("nomeCliente").value;
+    var cpf = document.getElementById("cpfCliente").value;
+    var endereco = document.getElementById("enderecoCliente").value;
+    var telefone = document.getElementById("telefoneCliente").value;
+    var email = document.getElementById("emailCliente").value;
+
+    
+    var arr = {	
+	nome:nome,
+	cpf:cpf,
+	endereco:endereco,
+    telefone:telefone,
+    email:email};
+        console.log("ola");
+        $.ajax(
+   {
+        url: "../cliente/insert-cliente.php",
+        type: "POST",
+        data: JSON.stringify(arr),
+        dataType: 'json',
+        async: false,
+        success: function(data) {
+            top.id_cliente=data.id;
+            console.log(data);
+            
+        }
+    }
+);
+
 }
 
 </script>
@@ -76,27 +136,27 @@ var email = document.getElementById("email").value;
 <table class="table">
     <tr>
         <td>Nome:</td>
-        <td><input name="nome" class="form-control"type="text"/></td>
+        <td><input id="nomeCliente" name="nome" class="form-control"type="text"/></td>
     </tr>
     <tr>
         <td>CPF:</td>
-        <td><input name="cpf" class="form-control"type="text"/></td>
+        <td><input id="cpfCliente" name="cpf" class="form-control"type="text"/></td>
     </tr>
     <tr>
         <td>Endereço:</td>
-        <td><input name="endereco" class="form-control"type="text"/></td>
+        <td><input id="enderecoCliente" name="endereco" class="form-control"type="text"/></td>
     </tr>
     <tr>
         <td>Telefone:</td>
-        <td><input name="telefone" class="form-control" type="text"/></td>
+        <td><input id="telefoneCliente" name="telefone" class="form-control" type="text"/></td>
     </tr>
     <tr>
         <td>Email:</td>
-        <td><input id="emailId" name="email" class="form-control" type="text"/></td>
+        <td><input id="emailCliente" name="email" class="form-control" type="text"/></td>
     </tr>
     <tr>
         <td><div>
-<a href="#ex1" type="button" onclick="show()" class="btn btn-primary" rel="modal:open">Enviar</a>
+<a href="#ex1" type="button" onclick="insertCliente()" class="btn btn-primary" rel="modal:open">Enviar</a>
 </div></td>
   </tr>
 
@@ -105,8 +165,9 @@ var email = document.getElementById("email").value;
 </br>
 
 <div id="ex1" class="modal">
-  <p>Thanks for clicking. That felt good.</p>
-  <a href="#" rel="modal:close">Close</a>
+  <p>Cliente inserido com sucesso clique em Ok.
+  E adicione os aparelhos do cliente.</p>
+  <a href="#" rel="modal:close">Ok</a>
 </div>
 
 <!-- Link to open the modal -->
@@ -117,23 +178,23 @@ var email = document.getElementById("email").value;
 <table class="table">
     <tr>
         <td>Entre com o nome do equipamento:</td>
-        <td><input id="aparelhoName" type="text"/></td>
+        <td><input id="aparelhoName" class="form-control"  type="text"/></td>
         
     </tr>
     <tr>
 
     <tr>
         <td>Modelo do equipamento:</td>
-        <td><input id="aparelhoModelo"type="text"/></td>
+        <td><input id="aparelhoModelo" class="form-control"  type="text"/></td>
     </tr>
     
     <tr>
         <td>Serial do equipamento:</td>
-        <td><input id="aparelhoSerial" type="text"/></td>
+        <td><input id="aparelhoSerial" class="form-control"  type="text"/></td>
     </tr>
     <tr>
         <td>Pronto?</td>
-        <td><input type="checkbox"></td>
+        <td><input id="aparelhoPronto" type="checkbox"></td>
     </tr>
     <tr>
         <td>Autorizado?</td>
@@ -153,11 +214,12 @@ var email = document.getElementById("email").value;
           rows="5" cols="33">
     </textarea></td>
   <tr>
-    <td><input onclick="aparelhoAdd()" class="btn btn-primary" value="Enviar"/></td>
+    <td><div><a href="#tabelaAparelho" type="button" onclick="aparelhoAdd()" class="btn btn-primary" value="">Enviar</a><div></td>
   </tr>
 </table>
 
 </br></br></br>
+<div id="tabelaAparelho">
 <table class="table table-striped table-bordered" id ="aparelhoTable">
   <caption>Aparelhos</caption>
   <tr>
@@ -167,6 +229,7 @@ var email = document.getElementById("email").value;
   </tr>
   
 </table>
+<div>
 </br></br></br>
 <table class="table">
   <tr>
@@ -174,7 +237,7 @@ var email = document.getElementById("email").value;
       <td><input class="form-control" onKeyPress="return(MascaraMoeda(this,'.',',',event))" type="text"/></td>
   </tr>
   <tr>
-    <td><input class="btn btn-primary" type="submit"value="Enviar"/></td>
+    <td><input class="btn btn-primary"  onclick="insertAparelho()" value="Enviar"/></td>
   </tr>
 </table>
 </form>

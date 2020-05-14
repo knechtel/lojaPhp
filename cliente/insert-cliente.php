@@ -14,15 +14,14 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 // get product id
 $data = json_decode(file_get_contents("php://input"));
   
-$id = insertAparelho($conexao,$data->nome,$data->modelo,$data->serial,$data->pronto,$data->idCliente);
+$id = insert($conexao,$data->nome,$data->cpf,$data->endereco,$data->telefone,$data->email);
     // set response code - 200 ok
-http_response_code(200);
+
   
     // tell the user
     $product_arr = array(
-        "id" =>  $id,
-        "name" => "Micael",
-        "description" => "pequena descricao"
+        "id" =>  $id
+      
     );
   
     // set response code - 200 OK

@@ -14,7 +14,7 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 // get product id
 $data = json_decode(file_get_contents("php://input"));
   
-$id = insertAparelho($conexao,$data->nome,$data->modelo,$data->serial,$data->pronto,$data->idCliente);
+$id = insertAparelho($conexao,$data->nome,$data->modelo,$data->serial,$data->pronto,$data->idCliente,$data->autorizado,$data->garantia,$data->entregue,$data->defeito_obs);
     // set response code - 200 ok
 http_response_code(200);
   

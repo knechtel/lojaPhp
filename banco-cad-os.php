@@ -8,8 +8,8 @@ function insert($conexao,$nome,$cpf,$endereco,$telefone,$email){
    
 }
 
-function insertAparelho($conexao,$nome,$modelo,$serial,$pronto,$idCliente){
-    $query = "insert into aparelho (nome, modelo, serial,pronto,idCliente) values ('{$nome}', '{$modelo}','{$serial}', '{$pronto}',{$idCliente})";
+function insertAparelho($conexao,$nome,$modelo,$serial,$pronto,$idCliente,$autorizado,$garantia,$entregue,$defeito_obs){
+    $query = "insert into aparelho (nome, modelo, serial,pronto,idCliente,autorizado,garantia,entregue,defeito_obs) values ('{$nome}', '{$modelo}','{$serial}', '{$pronto}',{$idCliente},'{$autorizado}','{$garantia}','{$entregue}','{$defeito_obs}')";
     mysqli_query($conexao,$query);
     return  mysqli_insert_id($conexao);
 }

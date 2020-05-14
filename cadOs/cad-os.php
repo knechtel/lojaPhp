@@ -69,19 +69,49 @@ cell3.innerHTML = document.getElementById("aparelhoSerial").value;
 var nome = document.getElementById("aparelhoName").value;
 var aparelhoModelo = document.getElementById("aparelhoModelo").value;
 var aparelhoSerial = document.getElementById("aparelhoSerial").value;
-var aparelhoPronto = document.getElementById("aparelhoPronto").value;
-console.log("call()");
-console.log(nome);
-console.log(aparelhoModelo);
-console.log(aparelhoSerial);
-console.log(aparelhoPronto);
-var test;   
+var story = document.getElementById("story").value;
+var aparelhoPronto;
+var autorizado;
+var garantia;
+var entregue;
+if ($('#aparelhoPronto').is(":checked"))
+{
+  aparelhoPronto = "APARELHO_PRONTO"
+  // it is checked
+}else{
+  aparelhoPronto = "APARELHO_NAO_PRONTO";
+}
+if ($('#autorizado').is(":checked"))
+{
+    autorizado = "APARELHO_AUTORIZADO"
+  // it is checked
+}else{
+    autorizado = "APARELHO_NAO_AUTORIZADO";
+}
+if ($('#garantia').is(":checked"))
+{
+    garantia = "GARANTIA"
+  // it is checked
+}else{
+    garantia = "NAO_GARANTIA";
+}
+if ($('#entregue').is(":checked"))
+{
+    entregue = "ENTREGUE"
+  // it is checked
+}else{
+    entregue = "NAO_ENTREGUE";
+}
 var arr = {	
 	nome:nome,
 	modelo:aparelhoModelo,
 	serial:aparelhoSerial,
-    pronto :top.id_cliente,
-    idCliente:top.id_cliente};
+    pronto :aparelhoPronto,
+    idCliente:top.id_cliente,
+    autorizado:autorizado,
+    garantia:garantia,
+    entregue:entregue,
+    defeito_obs:story};
 $.ajax(
    {
         url: "../aparelho/insert-aparelho.php",
@@ -194,7 +224,7 @@ function insertCliente (){
     </tr>
     <tr>
         <td>Pronto?</td>
-        <td><input id="aparelhoPronto" type="checkbox"></td>
+        <td><input id="autorizado" type="checkbox"></td>
     </tr>
     <tr>
         <td>Autorizado?</td>
@@ -202,11 +232,11 @@ function insertCliente (){
     </tr>
     <tr>
         <td>Entregue?</td>
-        <td><input type="checkbox"></td>
+        <td><input id="entregue" type="checkbox"></td>
     </tr>
     <tr>
         <td>Garantia?</td>
-        <td><input type="checkbox"></td>
+        <td><input id="garantia" type="checkbox"></td>
     </tr>
    <tr>
     <td>Defeito/OBS</td>

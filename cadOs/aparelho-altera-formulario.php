@@ -1,4 +1,4 @@
-<?php require_once("cabecalho.php");
+<?php require_once("../cadOs/cabecalho.php");
 require_once('../conecta.php');
       require_once("../banco-cad-os.php");
       require_once("../banco-produto.php");
@@ -14,13 +14,14 @@ require_once('../conecta.php');
 
 <h1>Alterando aparelhos da ordem de serviço:  <?= $_POST['idCliente'];?></h1>
 
-    <table class="table">
-    <?php
+<?php
             $id = $_POST['idCliente'];
             //Your success message
             $aparelhos = listAparelhoByIdCliente($conexao,$id);
         foreach($aparelhos as $aparelho) :
     ?>
+    <table class="table">
+
         <tr>
        <td><?=$aparelho['id']?></td>
     </tr>
@@ -51,18 +52,22 @@ require_once('../conecta.php');
         <td>Garantia?</td>
         <td><input id="garantia" type="checkbox"></td>
     </tr>
-  <tr>
-            <td><button class="btn btn-primary" type="submit">Alterar</button></td>
+  <tr><td>
+  <form id="form2" action="../aparelho/altera-aparelho.php" method="post">
+                <input type="hidden" name="id" value="<?=$aparelho['id']?>" />
+                <input type="hidden" name="autorizado" value="<?=$aparelho['autorizado']?>" />
+                <button class="btn btn-danger">Altera aparelho <?=$aparelho['id']?></button>
+            </form>
+</td>
     </tr>
-    <tr>
-    </br></br></br>      
-    </tr>
-    <?php
-        endforeach
-    ?>
+
+
 
     
     </table>
+    <?php
+        endforeach
+    ?>
 
 </div>
 </div>

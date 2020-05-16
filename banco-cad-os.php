@@ -1,5 +1,10 @@
 <?php
 
+function aparelhoById($conexao,$id){
+    $query = "select * from aparelho where id = {$id}";
+    $resultado = mysqli_query($conexao, $query);
+    return mysqli_fetch_assoc($resultado);
+}
 
  
 function clienteByID($conexao,$id){

@@ -1,4 +1,6 @@
 <?php
+
+
  
 function clienteByID($conexao,$id){
     $query = "select * from cliente where id = {$id}";
@@ -13,7 +15,7 @@ function aparelhoByCliente($conexao,$id){
 }
 
 function listAparelhoByIdCliente($conexao,$idCliente) {
-    return mysqli_query($conexao, "select id,nome,modelo,serial,defeito_obs from aparelho where aparelho.idCliente = {$idCliente}");   
+    return mysqli_query($conexao, "select * from aparelho where aparelho.idCliente = {$idCliente}");   
 }
 
 function listaClientes($conexao) {

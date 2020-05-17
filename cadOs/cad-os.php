@@ -132,44 +132,40 @@ $.ajax(
 }
 
 function insertCliente (){
-    if(document.getElementById("nomeCliente").value.length < 3){
-alert('Por favor, preencha o campo nome');
-document.getElementById("nomeCliente").focus();
-return false}else{
-
-
-    var nome = document.getElementById("nomeCliente").value;
-    var cpf = document.getElementById("cpfCliente").value;
-    var endereco = document.getElementById("enderecoCliente").value;
-    var telefone = document.getElementById("telefoneCliente").value;
-    var email = document.getElementById("emailCliente").value;
-    $("idButtonCliente").prop( "disabled", true );
-    
-    var arr = {	
-	nome:nome,
-	cpf:cpf,
-	endereco:endereco,
-    telefone:telefone,
-    email:email};
-        console.log("ola");
-        $.ajax(
-   {
-        url: "../cliente/insert-cliente.php",
-        type: "POST",
-        data: JSON.stringify(arr),
-        dataType: 'json',
-        async: false,
-        success: function(data) {
-            top.id_cliente=data.id;
-            console.log(data);
-            
-        }
-    }
  
-);
+        
+        var nome = document.getElementById("nomeCliente").value;
+    
+        var cpf = document.getElementById("cpfCliente").value;
+        var endereco = document.getElementById("enderecoCliente").value;
+        var telefone = document.getElementById("telefoneCliente").value;
+        var email = document.getElementById("emailCliente").value;
+        $("idButtonCliente").prop( "disabled", true );
+    
+        var arr = {	
+	        nome:nome,
+	        cpf:cpf,
+	        endereco:endereco,
+            telefone:telefone,
+            email:email};
+            console.log("ola");
+        $.ajax(
+        {
+            url: "../cliente/insert-cliente.php",
+            type: "POST",
+            data: JSON.stringify(arr),
+            dataType: 'json',
+            async: false,
+            success: function(data) {
+                top.id_cliente=data.id;
+                console.log(data);
+            }
+        }
+        );
 
-$('#buttonAparelho').removeAttr('disabled');
-$('#idButtonCliente').attr('disabled','disabled');}
+        $('#buttonAparelho').removeAttr('disabled');
+        $('#idButtonCliente').attr('disabled','disabled');
+    
 }
 
 </script>

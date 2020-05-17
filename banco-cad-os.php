@@ -57,8 +57,12 @@ function insert($conexao,$nome,$cpf,$endereco,$telefone,$email){
    
 }
 
-function insertAparelho($conexao,$nome,$modelo,$serial,$pronto,$idCliente,$autorizado,$garantia,$entregue,$defeito_obs){
-    $query = "insert into aparelho (nome, modelo, serial,pronto,idCliente,autorizado,garantia,entregue,defeito_obs,dataEntrada) values ('{$nome}', '{$modelo}','{$serial}', '{$pronto}',{$idCliente},'{$autorizado}','{$garantia}','{$entregue}','{$defeito_obs}',now())";
+function insertAparelho($conexao,$nome,$modelo,$serial,$pronto,$idCliente,
+$autorizado,$garantia,$entregue,$defeito_obs){
+    $query = "insert into aparelho (nome, modelo, serial,pronto,idCliente,autorizado
+    ,garantia,entregue,defeito_obs,dataEntrada) values ('{$nome}',
+     '{$modelo}','{$serial}', '{$pronto}',{$idCliente},'{$autorizado}',
+     '{$garantia}','{$entregue}','{$defeito_obs}',now())";
     mysqli_query($conexao,$query);
     return  mysqli_insert_id($conexao);
 }

@@ -34,7 +34,7 @@ function listAparelhoByIdCliente($conexao,$idCliente) {
 }
 
 function listaClientes($conexao) {
-    return mysqli_query($conexao, "select * from cliente");   
+    return mysqli_query($conexao, "select * from cliente ORDER BY id DESC");   
 }
 
 
@@ -47,7 +47,7 @@ function insert($conexao,$nome,$cpf,$endereco,$telefone,$email){
 }
 
 function insertAparelho($conexao,$nome,$modelo,$serial,$pronto,$idCliente,$autorizado,$garantia,$entregue,$defeito_obs){
-    $query = "insert into aparelho (nome, modelo, serial,pronto,idCliente,autorizado,garantia,entregue,defeito_obs) values ('{$nome}', '{$modelo}','{$serial}', '{$pronto}',{$idCliente},'{$autorizado}','{$garantia}','{$entregue}','{$defeito_obs}')";
+    $query = "insert into aparelho (nome, modelo, serial,pronto,idCliente,autorizado,garantia,entregue,defeito_obs,dataEntrada) values ('{$nome}', '{$modelo}','{$serial}', '{$pronto}',{$idCliente},'{$autorizado}','{$garantia}','{$entregue}','{$defeito_obs}',now())";
     mysqli_query($conexao,$query);
     return  mysqli_insert_id($conexao);
 }

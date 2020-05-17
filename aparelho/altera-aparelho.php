@@ -1,20 +1,13 @@
 <?php require_once("cabecalho.php");
-require_once('../conecta.php');
+      require_once('../conecta.php');
       require_once("../banco-cad-os.php");
       require_once("../banco-produto.php");
-
-    //   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-        
-        
-    // }
-
 
 ?>
 <body>
 <script type="text/javascript" language="javascript">
 function editAparelho(){
-    console.log("ëue ueue ue eu");
+    alert("Aparelho editado com sucesso!");
     var id = document.getElementById("aparelhoID").value;
     var nome = document.getElementById("aparelhoNome").value;
     var modelo = document.getElementById("aparelhoModelo").value;   
@@ -45,14 +38,14 @@ function editAparelho(){
     }else{
         garantia = "NAO_GARANTIA";
     }
-if ($('#entregue').is(":checked"))
-{
-    entregue = "ENTREGUE"
-  // it is checked
-}else{
-    entregue = "NAO_ENTREGUE";
-}
-var arr = {	
+    if ($('#entregue').is(":checked"))
+    {
+        entregue = "ENTREGUE"
+        // it is checked
+    }else{
+        entregue = "NAO_ENTREGUE";
+    }
+    var arr = {	
     id:id,
 	nome:nome,
 	modelo:modelo,
@@ -63,30 +56,29 @@ var arr = {
     entregue:entregue,
     defeito_obs:defeito};
 
-$.ajax(
-   {
+    $.ajax(
+        {
         url: "../aparelho/update-aparelho.php",
         type: "POST",
         data: JSON.stringify(arr),
         dataType: 'json',
         async: false,
         success: function(data) {
-            
-            console.log(data);
-            console.log("-> foi ");
+            $('.card.Billet').click(function(){ 
+            alert("Registro editado com sucesso");  
+            });
         }
-    }
-);}
+        }
+    );
+}
 
 </script>
 <h1>Alterando aparelhos da ordem de serviço:  <?= $_POST['id'];?></h1>
 
     <table class="table">
     <?php
-
-            $id = $_POST['id'];
-            //Your success message
-            $aparelho = aparelhoByID($conexao,$id);
+        $id = $_POST['id'];
+        $aparelho = aparelhoByID($conexao,$id);
       
     ?>
         <tr>
@@ -118,14 +110,14 @@ $.ajax(
     </tr>
     <tr>
         <td>Pronto?</td>
-        <td><input id="aprontoarelhoPronto" <?php if($aparelho["pronto"]==="APARELHO_PRONTO") echo "checked='checked'"; ?> type="checkbox"></td>
+        <td><input id="aparelhoPronto" <?php if($aparelho["pronto"]==="APARELHO_PRONTO") echo "checked='checked'"; ?> type="checkbox"></td>
     </tr>
     <tr>
         <td>Garantia?</td>
         <td><input id="garantia" <?php if($aparelho["garantia"]==="GARANTIA") echo "checked='checked'"; ?> type="checkbox"></td>
     </tr>
   <tr>
-            <td><button class="btn btn-primary" onclick="editAparelho()" >Alterar</button></td>
+            <td><button class="btn btn-primary"   onclick="editAparelho()" >Alterar</button></td>
     </tr>
     <tr>
     </br></br></br>      
@@ -134,6 +126,8 @@ $.ajax(
 
     
     </table>
+ 
+</div>
 
 </div>
 </div>

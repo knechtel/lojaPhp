@@ -23,7 +23,7 @@ require_once("mostra-alerta.php"); ?>
             </div>
             <div>
                 <ul class="nav navbar-nav">
-                    <li><a href="produto-formulario.php"></a></li>
+                    <li><a href="../../../">Ubuntu</a></li>
                     <li><a href="cliente-lista.php">Lista de clientes</a></li>
                     <li><a href="cad-os.php">Cadastro de Os</a></li>
                 </ul>

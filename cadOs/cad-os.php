@@ -67,6 +67,9 @@ cell2.innerHTML = document.getElementById("aparelhoModelo").value;
 cell3.innerHTML = document.getElementById("aparelhoSerial").value;
 
 var nome = document.getElementById("aparelhoName").value;
+
+
+
 var aparelhoModelo = document.getElementById("aparelhoModelo").value;
 var aparelhoSerial = document.getElementById("aparelhoSerial").value;
 var story = document.getElementById("story").value;
@@ -129,6 +132,12 @@ $.ajax(
 }
 
 function insertCliente (){
+    if(document.getElementById("nomeCliente").value.length < 3){
+alert('Por favor, preencha o campo nome');
+document.getElementById("nomeCliente").focus();
+return false}else{
+
+
     var nome = document.getElementById("nomeCliente").value;
     var cpf = document.getElementById("cpfCliente").value;
     var endereco = document.getElementById("enderecoCliente").value;
@@ -160,7 +169,7 @@ function insertCliente (){
 );
 
 $('#buttonAparelho').removeAttr('disabled');
-$('#idButtonCliente').attr('disabled','disabled');
+$('#idButtonCliente').attr('disabled','disabled');}
 }
 
 </script>

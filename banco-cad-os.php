@@ -1,5 +1,15 @@
 <?php
 
+function updateAparelho($conexao, $id, $nome, $modelo, $serial,
+ $pronto, $autorizado,$garantia,$entregue,$defeito_obs) {
+    $query = "update aparelho set nome = '{$nome}', modelo = '{$modelo}', serial = '{$serial}',
+        pronto= '{$pronto}', autorizado = '{$autorizado}',
+        garantia = '{$garantia}',
+        entregue = '{$entregue}',
+        defeito_obs = '{$defeito_obs}' where id = {$id}";
+    return mysqli_query($conexao, $query);
+}
+
 function aparelhoById($conexao,$id){
     $query = "select * from aparelho where id = {$id}";
     $resultado = mysqli_query($conexao, $query);

@@ -159,6 +159,8 @@ function insertCliente (){
  
 );
 
+$('#buttonAparelho').removeAttr('disabled');
+$('#idButtonCliente').attr('disabled','disabled');
 }
 
 </script>
@@ -245,7 +247,7 @@ function insertCliente (){
           rows="5" cols="33">
     </textarea></td>
   <tr>
-    <td><div><a href="#tabelaAparelho" type="button" onclick="aparelhoAdd()" class="btn btn-primary" value="">Enviar</a><div></td>
+    <td><div><a id="buttonAparelho" href="#tabelaAparelho" disabled="disabled" type="button" onclick="aparelhoAdd()" class="btn btn-primary" value="">Enviar</a><div></td>
   </tr>
 </table>
 

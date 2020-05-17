@@ -16,7 +16,18 @@ function aparelhoById($conexao,$id){
     return mysqli_fetch_assoc($resultado);
 }
 
- 
+function deleteAparelhoByIDCliente($conexao,$id){
+    $query = "delete  from aparelho where idCliente = {$id}";
+    $resultado = mysqli_query($conexao, $query);
+    return mysqli_fetch_assoc($resultado);
+}
+
+function deleteClienteByID($conexao,$id){
+    $query = "delete  from cliente where id = {$id}";
+    $resultado = mysqli_query($conexao, $query);
+    return mysqli_fetch_assoc($resultado);
+}
+
 function clienteByID($conexao,$id){
     $query = "select * from cliente where id = {$id}";
     $resultado = mysqli_query($conexao, $query);

@@ -1,7 +1,30 @@
 <?php require_once("cabecalho.php");
       require_once("../conecta.php");
       require_once("../banco-cad-os.php"); ?>
-
+<body>
+<script type="text/javascript" language="javascript">
+function doDelete(){
+    var id = document.getElementById("idExcluir").value;
+    var arr = {	
+	id:id
+	};
+    $.ajax(
+   {
+        url: "../cadOs/servico-excluir-os.php",
+        type: "POST",
+        data: JSON.stringify(arr),
+        dataType: 'json',
+        async: false,
+        success: function(data) {
+            
+            console.log(data);
+            console.log("-> foi ");
+        }
+    }
+);
+window.location.replace("http://localhost/loja/cadOs/remove-cliente.php");
+}
+</script>
 <table class="table table-striped table-bordered">
 
     <?php
@@ -18,9 +41,9 @@
         <td><input class="btn btn-primary" type="submit" value="Aparelhos"></input></td>
         </form></div>
         <td>
-            <form id="form2" action="remove-produto.php" method="post">
-                <input type="hidden" name="id" value="<?=$produto['ID']?>" />
-                <button class="btn btn-danger">remover</button>
+            
+                <input id="idExcluir" type="hidden" name="id" value="<?=$produto['id']?>" />
+                <button onclick="doDelete()" class="btn btn-danger">remover</button>
             </form>
         </td>
     </tr>
@@ -28,5 +51,5 @@
         endforeach
     ?>
 </table>
-
+</body>
 <?php require_once("rodape.php"); ?>

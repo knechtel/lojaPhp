@@ -6,7 +6,7 @@
 
     
 
-  $_SESSION["success"] = "Produto removido com sucesso.";
+  $_SESSION["success"] = "Cliente removido com sucesso.";
   header("Location: cliente-lista.php");
 
 

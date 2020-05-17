@@ -26,11 +26,20 @@ window.location.replace("http://localhost/loja/cadOs/remove-cliente.php");
 }
 </script>
 <table class="table table-striped table-bordered">
-
+    <tr>
+        <td>OS</td>
+        <td>Nome do cliente:</td>
+        <td>Edita cadastro do cliente:</td>
+        <td>Lista aparelhos:</td>
+        <td>Deleta OS:</td>
+    </tr>
+   
+ 
     <?php
         $produtos = listaClientes($conexao);
         foreach($produtos as $produto) :
     ?>
+ 
     <tr>
     <td><?= $produto['id'] ?></td>
         <td><?= $produto['nome'] ?></td>

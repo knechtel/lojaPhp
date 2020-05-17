@@ -106,7 +106,7 @@ function editAparelho(){
     </tr>
     <tr>
         <td>Entregue?</td>
-        <td><input id="entregue"  <?php if($aparelho["entregue"]==="ENTREGUE") echo "checked='checked'"; ?>  type="checkbox"></td>
+        <td><input id="entregue"  <?php if($aparelho["entregue"]==="ENTREGUE"){ echo "checked='checked'";echo "disabled='disabled'"; }?>  type="checkbox"></td>
     </tr>
     <tr>
         <td>Pronto?</td>

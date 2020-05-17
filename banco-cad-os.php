@@ -67,3 +67,11 @@ $autorizado,$garantia,$entregue,$defeito_obs){
     return  mysqli_insert_id($conexao);
 }
 
+function updateCliente($conexao, $id, $nome, $cpf, $endereco,
+ $telefone, $email) {
+    $query = "update cliente set nome = '{$nome}',
+     cpf='{$cpf}',endereco='{$endereco}',telefone='{$telefone}',
+     email='{$email}' where id = {$id}";
+    return mysqli_query($conexao, $query);
+     
+}

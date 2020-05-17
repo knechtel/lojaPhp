@@ -7,16 +7,56 @@ $cliente = clienteByID($conexao,$id);
 
  echo $meuTeste['id']
 ?>
+</body>
+<script>
 
+function insertCliente (){
+    var nome = document.getElementById("nomeCliente").value;
+    var cpf = document.getElementById("cpfCliente").value;
+    var endereco = document.getElementById("enderecoCliente").value;
+    var telefone = document.getElementById("telefoneCliente").value;
+    var email = document.getElementById("emailCliente").value;
+    var idCliente = document.getElementById("idCliente").value;
+    
+    
+    var arr = {	
+    id:idCliente,
+	nome:nome,
+	cpf:cpf,
+	endereco:endereco,
+    telefone:telefone,
+    email:email};
+        console.log("ola");
+        $.ajax(
+   {
+        url: "../cliente/update-cliente.php",
+        type: "POST",
+        data: JSON.stringify(arr),
+        dataType: 'json',
+        async: false,
+        success: function(data) {
+            
+            console.log(data);
+            
+        }
+    }
+ 
+);
+window.location.replace("http://localhost/loja/cadOs/formulario-cliente-message.php");
+
+}
+
+</script>
 
 
  <h1>Cadastro de Cliente</h1>
- <form action="view.php" method="POST">
+
 <table class="table">
 
     <tr>
         <td>Nome:</td>
         <td><input id="nomeCliente" name="nome" class="form-control"type="text" value="<?=$cliente['nome']?>"/></td>
+        <td><input id="idCliente" name="nome" class="form-control"type="hidden" value="<?=$cliente['id']?>"/></td>
     </tr>
     <tr>
         <td>CPF:</td>
@@ -35,11 +75,11 @@ $cliente = clienteByID($conexao,$id);
         <td><input id="emailCliente" name="email" class="form-control" value="<?=$cliente['email']?>" type="text"/></td>
     </tr>
     <tr>
-    <td><input class="btn btn-primary"  type="submit" value="Enviar"/></td>
+    <td><input class="btn btn-primary" onclick="insertCliente()"  type="submit" value="Enviar"/></td>
   </tr>
 
 </table>
-</form>
 
+</body>
 <?php require_once("rodape.php"); ?>
 

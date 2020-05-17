@@ -73,6 +73,8 @@ var nome = document.getElementById("aparelhoName").value;
 var aparelhoModelo = document.getElementById("aparelhoModelo").value;
 var aparelhoSerial = document.getElementById("aparelhoSerial").value;
 var story = document.getElementById("story").value;
+
+
 var aparelhoPronto;
 var autorizado;
 var garantia;
@@ -129,6 +131,10 @@ $.ajax(
         }
     }
 );
+document.getElementById('aparelhoName').value = ''
+document.getElementById('aparelhoModelo').value = ''
+document.getElementById('aparelhoSerial').value = ''
+document.getElementById('story').value = ''
 }
 
 function insertCliente (){

@@ -77,7 +77,7 @@ function doBoleto(){
             
             </form>
             <td>
-            <form id="form123"  action="http://10.0.0.111:7070/geraRelatorio" method="POST" >
+            <form id="form123"  action="http://localhost:7070/geraRelatorio" method="POST" >
             <input type="hidden" name="id" value="<?=$produto['id']?>" />
                 <input class="btn btn-primary" type="submit" value="Nota">
                     </input>

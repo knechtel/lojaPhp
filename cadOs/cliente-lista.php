@@ -24,6 +24,27 @@ function doDelete(){
 );
 window.location.replace("http://localhost/loja/cadOs/remove-cliente.php");
 }
+function doBoleto(){
+    var id = document.getElementById("idExcluir").value;
+    var arr = {	
+	id:id
+	};
+    $.ajax(
+   {
+        url: "localhost:8080/geRelatorio",
+        type: "POST",
+        data: JSON.stringify(arr),
+        dataType: 'json',
+        async: false,
+        success: function(data) {
+            
+            console.log(data);
+            console.log("-> foi ");
+        }
+    }
+);
+
+}
 </script>
 <table class="table table-striped table-bordered">
     <tr>
@@ -31,6 +52,7 @@ window.location.replace("http://localhost/loja/cadOs/remove-cliente.php");
         <td>Nome do cliente:</td>
         <td>Edita cadastro do cliente:</td>
         <td>Lista aparelhos:</td>
+        <td>Gerar Nota OS:</td>
         <td>Deleta OS:</td>
     </tr>
    
@@ -45,14 +67,30 @@ window.location.replace("http://localhost/loja/cadOs/remove-cliente.php");
         <td><?= $produto['nome'] ?></td>
         <td><a class="btn btn-primary" href="cliente-formulario.php?id=<?=$produto['id']?>">alterar dados do cliente</a></td>
         <div>
-        <form id="form1" action="aparelho-altera-formulario.php" method="POST">
-        <input type="hidden" name="idCliente" value="<?=$produto['id']?>" />
-        <td><input class="btn btn-primary" type="submit" value="Aparelhos"></input></td>
-        </form></div>
-        <td>
+            <form id="form1" action="aparelho-altera-formulario.php" method="POST">
+                <input type="hidden" name="idCliente" value="<?=$produto['id']?>" />
+                <td>
+                    <input class="btn btn-primary" type="submit" value="Aparelhos">
+                    </input>
+                </td>
             
-                <input id="idExcluir" type="hidden" name="id" value="<?=$produto['id']?>" />
-                <button onclick="doDelete()" class="btn btn-danger">remover</button>
+            
+            </form>
+            <td>
+            <form id="form123"  action="http://10.0.0.101:8080/geraRelatorio" method="POST" >
+            <input type="hidden" name="id" value="<?=$produto['id']?>" />
+                <input class="btn btn-primary" type="submit" value="Nota">
+                    </input>
+               
+                
+                </form>
+                
+            </td>
+        </div>
+        
+        <td>
+            <input id="idExcluir" type="hidden" name="id" value="<?=$produto['id']?>" />
+            <button onclick="doDelete()" class="btn btn-danger">remover</button>
             </form>
         </td>
     </tr>

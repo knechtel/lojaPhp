@@ -6,7 +6,7 @@ require_once("cabecalho.php");
 <script type="text/javascript" language="javascript">
 var idCliente = 0;
 var aparelhos=[];
-
+ctlCliente =0
 function show(){  }
 function MascaraMoeda(objTextBox, SeparadorMilesimo, SeparadorDecimal, e){
     var sep = 0;
@@ -50,128 +50,122 @@ function MascaraMoeda(objTextBox, SeparadorMilesimo, SeparadorDecimal, e){
 }
  id_cliente=1;
 function aparelhoAdd() {
-  console.log("ola teste")
+  
+    if(top.ctlCliente==0){
+        alert("Primeiro salve o registro do cliente.");
+    }else{
+        var table = document.getElementById("aparelhoTable");
 
-var table = document.getElementById("aparelhoTable");
+        // Create an empty <tr> element and add it to the 1st position of the table:
+        var row = table.insertRow();
 
-// Create an empty <tr> element and add it to the 1st position of the table:
-var row = table.insertRow();
+        // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        // Add some text to the new cells:
+        cell1.innerHTML =  document.getElementById("aparelhoName").value;;
+        cell2.innerHTML = document.getElementById("aparelhoModelo").value;
+        cell3.innerHTML = document.getElementById("aparelhoSerial").value;
 
-// Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
-var cell1 = row.insertCell(0);
-var cell2 = row.insertCell(1);
-var cell3 = row.insertCell(2);
-// Add some text to the new cells:
-cell1.innerHTML =  document.getElementById("aparelhoName").value;;
-cell2.innerHTML = document.getElementById("aparelhoModelo").value;
-cell3.innerHTML = document.getElementById("aparelhoSerial").value;
-
-var nome = document.getElementById("aparelhoName").value;
-
-
-
-var aparelhoModelo = document.getElementById("aparelhoModelo").value;
-var aparelhoSerial = document.getElementById("aparelhoSerial").value;
-var story = document.getElementById("story").value;
-
-
-var aparelhoPronto;
-var autorizado;
-var garantia;
-var entregue;
-if ($('#aparelhoPronto').is(":checked"))
-{
-  aparelhoPronto = "APARELHO_PRONTO"
-  // it is checked
-}else{
-  aparelhoPronto = "APARELHO_NAO_PRONTO";
-}
-if ($('#autorizado').is(":checked"))
-{
-    autorizado = "APARELHO_AUTORIZADO"
-  // it is checked
-}else{
-    autorizado = "APARELHO_NAO_AUTORIZADO";
-}
-if ($('#garantia').is(":checked"))
-{
-    garantia = "GARANTIA"
-  // it is checked
-}else{
-    garantia = "NAO_GARANTIA";
-}
-if ($('#entregue').is(":checked"))
-{
-    entregue = "ENTREGUE"
-  // it is checked
-}else{
-    entregue = "NAO_ENTREGUE";
-}
-var arr = {	
-	nome:nome,
-	modelo:aparelhoModelo,
-	serial:aparelhoSerial,
-    pronto :aparelhoPronto,
-    idCliente:top.id_cliente,
-    autorizado:autorizado,
-    garantia:garantia,
-    entregue:entregue,
-    defeito_obs:story};
-$.ajax(
-   {
-        url: "../aparelho/insert-aparelho.php",
-        type: "POST",
-        data: JSON.stringify(arr),
-        dataType: 'json',
-        async: false,
-        success: function(data) {
-            
-            console.log(data);
-            console.log("-> foi ");
+        var nome = document.getElementById("aparelhoName").value;
+        var aparelhoModelo = document.getElementById("aparelhoModelo").value;
+        var aparelhoSerial = document.getElementById("aparelhoSerial").value;
+        var story = document.getElementById("story").value;
+        var aparelhoPronto;
+        var autorizado;
+        var garantia;
+        var entregue;
+        if ($('#aparelhoPronto').is(":checked"))
+        {
+            aparelhoPronto = "APARELHO_PRONTO"
+        // it is checked
+        }else{
+            aparelhoPronto = "APARELHO_NAO_PRONTO";
         }
+        if ($('#autorizado').is(":checked"))
+        {
+            autorizado = "APARELHO_AUTORIZADO"
+            // it is checked
+        }else{
+            autorizado = "APARELHO_NAO_AUTORIZADO";
+        }
+        if ($('#garantia').is(":checked"))
+        {
+            garantia = "GARANTIA"
+        // it is checked
+        }else{
+            garantia = "NAO_GARANTIA";
+        }
+            if ($('#entregue').is(":checked"))
+        {
+            entregue = "ENTREGUE"
+        // it is checked
+        }else{
+            entregue = "NAO_ENTREGUE";
+        }
+        var arr = {	
+	        nome:nome,
+	        modelo:aparelhoModelo,
+	        serial:aparelhoSerial,
+            pronto :aparelhoPronto,
+            idCliente:top.id_cliente,
+            autorizado:autorizado,
+            garantia:garantia,
+            entregue:entregue,
+            defeito_obs:story};
+        $.ajax(  
+        {
+            url: "../aparelho/insert-aparelho.php",
+            type: "POST",
+            data: JSON.stringify(arr),
+            dataType: 'json',
+            async: false,
+            success: function(data) {}
+            }
+        );
+        document.getElementById('aparelhoName').value = ''
+        document.getElementById('aparelhoModelo').value = ''
+        document.getElementById('aparelhoSerial').value = ''
+        document.getElementById('story').value = ''
     }
-);
-document.getElementById('aparelhoName').value = ''
-document.getElementById('aparelhoModelo').value = ''
-document.getElementById('aparelhoSerial').value = ''
-document.getElementById('story').value = ''
 }
 
 function insertCliente (){
  
         
-        var nome = document.getElementById("nomeCliente").value;
+    var nome = document.getElementById("nomeCliente").value;
     
-        var cpf = document.getElementById("cpfCliente").value;
-        var endereco = document.getElementById("enderecoCliente").value;
-        var telefone = document.getElementById("telefoneCliente").value;
-        var email = document.getElementById("emailCliente").value;
-        $("idButtonCliente").prop( "disabled", true );
+    var cpf = document.getElementById("cpfCliente").value;
+    var endereco = document.getElementById("enderecoCliente").value;
+    var telefone = document.getElementById("telefoneCliente").value;
+    var email = document.getElementById("emailCliente").value;
+    $("idButtonCliente").prop( "disabled", true );
     
-        var arr = {	
+    var arr = {	
 	        nome:nome,
 	        cpf:cpf,
 	        endereco:endereco,
             telefone:telefone,
             email:email};
             console.log("ola");
-        $.ajax(
-        {
-            url: "../cliente/insert-cliente.php",
-            type: "POST",
-            data: JSON.stringify(arr),
-            dataType: 'json',
-            async: false,
-            success: function(data) {
-                top.id_cliente=data.id;
-                console.log(data);
-            }
+    $.ajax(
+    {
+        url: "../cliente/insert-cliente.php",
+        type: "POST",
+        data: JSON.stringify(arr),
+        dataType: 'json',
+        async: false,
+        success: function(data) {
+        top.id_cliente=data.id;
+        console.log(data);
         }
-        );
+    }
+    );
 
-        $('#buttonAparelho').removeAttr('disabled');
-        $('#idButtonCliente').attr('disabled','disabled');
-    
+    $('#buttonAparelho').removeAttr('disabled');
+    $('#idButtonCliente').attr('disabled','disabled');
+    top.ctlCliente=1;
 }
 
 </script>

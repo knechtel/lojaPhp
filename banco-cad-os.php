@@ -60,7 +60,8 @@ function listaClientes($conexao) {
 
 
 function insert($conexao,$nome,$cpf,$endereco,$telefone,$email){
-    $query = "insert into cliente (nome, cpf, endereco,telefone, email) values ('{$nome}', '{$cpf}','{$endereco}', '{$telefone}', '{$email}')";
+    $query = "insert into cliente (nome, cpf, endereco,telefone, email) values ('{$nome}', '{$cpf}',
+    '{$endereco}', '{$telefone}', '{$email}')";
     mysqli_query($conexao,$query);
  
    return mysqli_insert_id($conexao);
@@ -68,11 +69,11 @@ function insert($conexao,$nome,$cpf,$endereco,$telefone,$email){
 }
 
 function insertAparelho($conexao,$nome,$modelo,$serial,$pronto,$idCliente,
-$autorizado,$garantia,$entregue,$defeito_obs){
+$autorizado,$garantia,$entregue,$defeito_obs,$valor){
     $query = "insert into aparelho (nome, modelo, serial,pronto,idCliente,autorizado
-    ,garantia,entregue,defeito_obs,dataEntrada) values ('{$nome}',
+    ,garantia,entregue,defeito_obs,dataEntrada,valor) values ('{$nome}',
      '{$modelo}','{$serial}', '{$pronto}',{$idCliente},'{$autorizado}',
-     '{$garantia}','{$entregue}','{$defeito_obs}',now())";
+     '{$garantia}','{$entregue}','{$defeito_obs}',now(),{$valor})";
     mysqli_query($conexao,$query);
     return  mysqli_insert_id($conexao);
 }

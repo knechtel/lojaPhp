@@ -71,6 +71,7 @@ function aparelhoAdd() {
         var nome = document.getElementById("aparelhoName").value;
         var aparelhoModelo = document.getElementById("aparelhoModelo").value;
         var aparelhoSerial = document.getElementById("aparelhoSerial").value;
+        var valor = document.getElementById("aparelhoValor").value;
         var story = document.getElementById("story").value;
         var aparelhoPronto;
         var autorizado;
@@ -113,7 +114,7 @@ function aparelhoAdd() {
             autorizado:autorizado,
             garantia:garantia,
             entregue:entregue,
-            defeito_obs:story};
+            defeito_obs:story,valor:valor};
         $.ajax(  
         {
             url: "../aparelho/insert-aparelho.php",
@@ -127,6 +128,8 @@ function aparelhoAdd() {
         document.getElementById('aparelhoName').value = ''
         document.getElementById('aparelhoModelo').value = ''
         document.getElementById('aparelhoSerial').value = ''
+        document.getElementById('aparelhoValor').value = ''
+       
         document.getElementById('story').value = ''
     }
 }
@@ -229,6 +232,10 @@ function insertCliente (){
     <tr>
         <td>Serial do equipamento:</td>
         <td><input id="aparelhoSerial" class="form-control"  type="text"/></td>
+    </tr>
+    <tr>
+        <td>Valor do orçamento:</td>
+        <td><input id="aparelhoValor" class="form-control"  type="text"/></td>
     </tr>
     <tr>
         <td>Pronto?</td>
